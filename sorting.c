@@ -19,7 +19,7 @@ int main(){
         scheptr[i] = sche + i;
     }
 
-    qsort(scheptr, data_len, size, compar_schedule);
+    heap_sort(scheptr, data_len, size, compar_schedule);
 
     write_result(scheptr, data_len);
 

@@ -17,7 +17,7 @@ int main(){
     write_generated_data(fp, 30);
     fclose(fp);
 
-    fclose(fdata);
+    fclose(fp);
 
     return 0;
 }
