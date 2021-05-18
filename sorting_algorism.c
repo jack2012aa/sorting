@@ -64,7 +64,7 @@ void max_heapify(void *base, int root, size_t node_len, size_t size, int (*compa
 
     int left_index = root * 2;
     int right_index = root * 2 + 1;
-    int max_index;
+    int max_index;  //index of the largest node in the subtree
 
     //if left children's index is in range then compare root with left children
     if ((left_index <= node_len) && (*compar)((base + ((root - 1) * size)), (base + ((left_index - 1) * size))) < 0){
@@ -78,7 +78,7 @@ void max_heapify(void *base, int root, size_t node_len, size_t size, int (*compa
         max_index = right_index;
     }
 
-    printf("ROOT: %d, LEFT: %d, RIGHT: %d, MAX_INDEX: %d \n", root, left_index, right_index, max_index);
+    //printf("ROOT: %d, LEFT: %d, RIGHT: %d, MAX_INDEX: %d \n", root, left_index, right_index, max_index);
     if (max_index != root) {
         swap(base + (root - 1) * size, base + (max_index - 1) * size, size);
         max_heapify(base, max_index, node_len, size, compar);  //continue to heapify swapped children
@@ -96,7 +96,7 @@ void max_heapify(void *base, int root, size_t node_len, size_t size, int (*compa
 void build_max_heap(void *base, size_t node_len, size_t size, int (*compar)(const void*, const void*)){
 
     for(int i = node_len / 2; i > 0; i--){
-        printf("i: %d ", i);
+        //printf("i: %d ", i);
         max_heapify(base, i, node_len, size, compar);
     }
 
@@ -114,7 +114,7 @@ void heap_sort(void *base, size_t num, size_t size, int (*compar)(const void*, c
     size_t node_len = num;
     build_max_heap(base, node_len, size, compar);
 
-    printf("\n=====SORTING=====\n");
+    //printf("\n=====SORTING=====");
     for(; node_len > 1;){
         swap(base, (base + (node_len - 1) * size), size);
         node_len--;
@@ -153,8 +153,8 @@ void merge(void *base, size_t front, size_t mid, size_t end, size_t size, int (*
             memcpy((base + (front + i + j) * size), right + (j * size), size);
             j++;
         }
-        printf("i: %d, j: %d\n", i, j);
-        printf("%d %d %d\n", (base + (front + i + j) * size), (left + (i * size)), (right + (j * size)));
+        //printf("i: %d, j: %d\n", i, j);
+        //printf("%d %d %d\n", (base + (front + i + j) * size), (left + (i * size)), (right + (j * size)));
     }
 
     //沒比較完的塞回base中
@@ -201,6 +201,6 @@ void sort(void *base, size_t front, size_t end, size_t size, int (*compar)(const
 void merge_sort(void *base, size_t num, size_t size, int (*compar)(const void*, const void*)){
 
     sort(base, 0, num - 1, size, compar);
-    printf("FINISHED\n");
+    //printf("FINISHED\n");
 
 }

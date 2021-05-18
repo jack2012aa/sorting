@@ -3,10 +3,10 @@
 #include "dataio.h"
 #include "schedule.h"
 
-void read_data(struct schedule *sche, int len){
+void read_data(char* file_name, struct schedule *sche, int len){
 
     FILE *fdata;
-    fdata = fopen("data.txt", "r");
+    fdata = fopen(file_name, "r");
     for (int i = 0; i < len; i++, sche++){
         fscanf(fdata, "%d %c %d", &(sche -> begin_date), &(sche -> level), &(sche -> remuneration));
         fgetc(fdata);   //change line
@@ -15,10 +15,10 @@ void read_data(struct schedule *sche, int len){
 
 }
 
-void write_result(struct schedule **sche, int len){
+void write_result(char* file_name, struct schedule **sche, int len){
     
     FILE *fresult;
-    fresult = fopen("result.txt", "w");
+    fresult = fopen(file_name, "w");
     for (int i = 0; i < len; i++, sche++)
         fprintf(fresult, "%d %c %d\n", (*sche) -> begin_date, (*sche) -> level, (*sche) -> remuneration);
     fclose(fresult);
